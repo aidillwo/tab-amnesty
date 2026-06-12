@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tab Amnesty</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Tab Amnesty</h1>
+      <span id="tab-count" class="tab-count"></span>
+    </div>
+    <nav>
+      <button class="nav-btn active" data-view="triage">Triage</button>
+      <button class="nav-btn" data-view="notes">Notes</button>
+      <button class="nav-btn" data-view="workspaces">Workspaces</button>
+    </nav>
+    <div class="header-actions">
+      <button id="recluster" title="Re-read tabs and re-cluster">↻ Re-cluster</button>
+      <button id="open-settings" title="API key & model">⚙ Settings</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-triage" class="view"></section>
+    <section id="view-notes" class="view hidden"></section>
+    <section id="view-workspaces" class="view hidden"></section>
+  </main>
+
+  <dialog id="settings-dialog">
+    <form method="dialog" id="settings-form">
+      <h2>Settings</h2>
+      <label>
+        Claude API key
+        <input type="password" id="api-key" placeholder="sk-ant-..." autocomplete="off" />
+      </label>
+      <p class="hint">
+        Stored only in this browser, sent only to api.anthropic.com.
+        Without a key, Tab Amnesty falls back to local extractive summaries.
+      </p>
+      <label>
+        Model
+        <select id="model-select"></select>
+      </label>
+      <div class="dialog-actions">
+        <button value="cancel" type="button" id="settings-cancel">Cancel</button>
+        <button value="save" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="triage-dialog">
+    <div id="triage-dialog-body"></div>
+  </dialog>
+
+  <div id="toast" class="toast hidden">
+    <span id="toast-msg"></span>
+    <button id="toast-undo" class="hidden">Undo</button>
+    <button id="toast-close">✕</button>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
